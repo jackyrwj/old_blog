@@ -1,4 +1,18 @@
-## JUC: BlockingQueue阻塞队列
+##
+
+---
+
+layout: post
+title: "JUC包下的BlockingQueue阻塞队列"
+date: 2023-4-12
+tags: [JUC]
+comments: true
+author: jackyrwj
+toc: true
+
+---
+
+## BlockingQueue阻塞队列
 
 > BlockingQueue 接口是JUC包下的阻塞队列，主要可以分为BlockingQueue和BlockingDeque两个接口，两个接口根据不同的数据结构（队列、链表）或者业务场景（优先级，延迟、同步）有不同的实现方法。本文将就几种阻塞队列的使用进行归纳总结
 
@@ -22,11 +36,9 @@ java.util.concurrent 包里的 BlockingDeque 接口表示一个线程插入和�
 
 ![](https://raw.githubusercontent.com/jackyrwj/picb/master/20230412150741.png)
 
-###
+## BlockingQueue和BlockingDeque使用方法
 
-### BlockingDeque 与BlockingQueue使用方法
-
-#### BlockingQueue
+### [#](https://pdai.tech/md/java/thread/java-thread-x-juc-collection-BlockingQueue.html#blockingqueue)BlockingQueue
 
 BlockingQueue具有 4 组不同的方法用于插入、移除以及对队列中的元素进行检查。如果请求的操作不能得到立即执行的话，每个方法的表现也不同。这些方法如下:
 
@@ -38,7 +50,7 @@ BlockingQueue具有 4 组不同的方法用于插入、移除以及对队列中�
 
 >  无法向一个 BlockingQueue 中插入 null。如果你试图插入 null，BlockingQueue 将会抛出一个 NullPointerException。 可以访问到 BlockingQueue 中的所有元素，而不仅仅是开始和结束的元素。比如说，你将一个对象放入队列之中以等待处理，但你的应用想要将其取消掉。那么你可以调用诸如 remove(o) 方法来将队列之中的特定对象进行移除。但是这么干效率并不高(译者注: 基于队列的数据结构，获取除开始或结束位置的其他对象的效率不会太高)，因此你尽量不要用这一类的方法，除非你确实不得不那么做。
 
-#### BlockingDeque
+### [#](#blockingdeque) BlockingDeque
 
 一个 BlockingDeque - 线程在双端队列的两端都可以插入和提取元素。 一个线程生产元素，并把它们插入到队列的任意一端。如果双端队列已满，插入线程将被阻塞，直到一个移除线程从该队列中移出了一个元素。如果双端队列为空，移除线程将被阻塞，直到一个插入线程向该队列插入了一个新元素。BlockingDeque 具有 4 组不同的方法用于插入、移除以及对双端队列中的元素进行检查。如果请求的操作不能得到立即执行的话，每个方法的表现也不同。这些方法如下:
 
@@ -55,7 +67,7 @@ BlockingQueue具有 4 组不同的方法用于插入、移除以及对队列中�
 - 阻塞: 如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行。
 - 超时: 如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行，但等待时间不会超过给定值。返回一个特定值以告知该操作是否成功(典型的是 true / false)。
 
-### BlockingDeque 与BlockingQueue关系
+### [#](#blockingdeque-与blockingqueue关系) BlockingDeque 与BlockingQueue关系
 
 BlockingDeque 接口继承自 BlockingQueue 接口。这就意味着你可以像使用一个 BlockingQueue 那样使用 BlockingDeque。如果你这么干的话，各种插入方法将会把新元素添加到双端队列的尾端，而移除方法将会把双端队列的首端的元素移除。正如 BlockingQueue 接口的插入和移除方法一样。
 
@@ -274,8 +286,7 @@ String one = deque.takeFirst();
 
 ## [#](#参考文章) 参考文章
 
-- [JUC集合: BlockingQueue详解 | Java 全栈知识体系](https://pdai.tech/md/java/thread/java-thread-x-juc-collection-BlockingQueue.html)
+- https://pdai.tech/md/java/thread/java-thread-x-juc-collection-BlockingQueue.html
 - https://blog.csdn.net/defonds/article/details/44021605#t7
 - http://tutorials.jenkov.com/java-concurrency/index.html
-- https://github.com/CL0610/Java-concurrency/blob/master/19.%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E4%B9%8BBlockingQueue/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E4%B9%8BBlockingQueue.md
 - https://www.javadoop.com/post/java-concurrent-queue
