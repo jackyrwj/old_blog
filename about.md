@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 ## 关于我
-你好，我是程序员jackyrwj。
+你好，我jackyrwj。
 
 是一名研二的在校生。
 
