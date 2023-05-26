@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: "美团 - Redis与MySQL双写一致性如何保证"
+title: "美团文章：Redis与MySQL双写一致性如何保证"
 date: 2023-5-3
 tags: [好文分享]
 comments: true

@@ -1,9 +1,9 @@
 ---
 
 layout: post
-title: "MySQL InnoDB的MVCC实现机制"
+title: "InnoDB的MVCC实现机制"
 date: 2023-4-29
-tags: [MySQL底层]
+tags: [MySQL]
 comments: true
 author: jackyrwj
 toc: true

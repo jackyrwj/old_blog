@@ -1,9 +1,9 @@
 ---
 
 layout: post
-title: "JAVA内存模型(JMM)"
+title: "JAVA内存模型"
 date: 2023-5-3
-tags: [JMM]
+tags: [JVM]
 comments: true
 author: jackyrwj
 toc: true
