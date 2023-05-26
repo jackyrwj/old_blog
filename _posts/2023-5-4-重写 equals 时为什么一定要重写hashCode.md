@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: "重写 equals 时为什么一定要重写 hashCode"
+title: "重写equals时为什么一定要重写hashCode"
 date: 2023-5-4
 tags: [JavaSE]
 comments: true

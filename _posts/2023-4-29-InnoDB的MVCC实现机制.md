@@ -10,26 +10,11 @@ toc: true
 
 ---
 
-> MySQL 中InnoDB中实现了事务（多版本并发控制MVCC+锁）， 其中通过MVCC解决隔离性问题。具体而言，**MVCC就是为了实现读-写冲突不加锁**，而这个读指的就是**快照读**, 而非当前读，当**前读实际上是一种加锁的操作，是悲观锁的实现**; 这里转一篇文章带你理解InnoDB中MVCC的实现机制。
+> MySQL 中InnoDB中实现了事务（多版本并发控制MVCC+锁）， 
+> 其中通过MVCC解决隔离性问题。具体而言，**MVCC就是为了实现读-写冲突不加锁**，而这个读指的就是**快照读**, 
+> 而非当前读，当**前读实际上是一种加锁的操作，是悲观锁的实现**
 
-- [MySQL - MySQL InnoDB的MVCC实现机制](#mysql---mysql-innodb%E7%9A%84mvcc%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6)
-  - [前提概要](#%E5%89%8D%E6%8F%90%E6%A6%82%E8%A6%81)
-    - [什么是MVCC?](#%E4%BB%80%E4%B9%88%E6%98%AFmvcc)
-    - [什么是当前读和快照读？](#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BD%93%E5%89%8D%E8%AF%BB%E5%92%8C%E5%BF%AB%E7%85%A7%E8%AF%BB)
-    - [当前读，快照读和MVCC的关系](#%E5%BD%93%E5%89%8D%E8%AF%BB%E5%BF%AB%E7%85%A7%E8%AF%BB%E5%92%8Cmvcc%E7%9A%84%E5%85%B3%E7%B3%BB)
-    - [MVCC能解决什么问题，好处是？](#mvcc%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E5%A5%BD%E5%A4%84%E6%98%AF)
-      - [数据库并发场景?](#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF)
-      - [MVCC带来的好处是？](#mvcc%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF)
-    - [小结一下](#%E5%B0%8F%E7%BB%93%E4%B8%80%E4%B8%8B)
-  - [MVCC的实现原理](#mvcc%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86)
-    - [隐式字段](#%E9%9A%90%E5%BC%8F%E5%AD%97%E6%AE%B5)
-    - [undo日志](#undo%E6%97%A5%E5%BF%97)
-    - [Read View(读视图)](#read-view%E8%AF%BB%E8%A7%86%E5%9B%BE)
-    - [整体流程](#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B)
-  - [MVCC相关问题](#mvcc%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98)
-    - [RR是如何在RC级的基础上解决不可重复读的？](#rr%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8rc%E7%BA%A7%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E8%A7%A3%E5%86%B3%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E7%9A%84)
-    - [RC,RR级别下的InnoDB快照读有什么不同？](#rcrr%E7%BA%A7%E5%88%AB%E4%B8%8B%E7%9A%84innodb%E5%BF%AB%E7%85%A7%E8%AF%BB%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C)
-  - [文章来源](#%E6%96%87%E7%AB%A0%E6%9D%A5%E6%BA%90)
+
 
 ## [#](#前提概要) 前提概要
 

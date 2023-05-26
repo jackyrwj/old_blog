@@ -12,10 +12,10 @@ toc: true
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/47e06ce80e7743028b8e79fb6cc35b0f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
-## 谈谈一致性
+
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b1353d15b66d43eab2cf8fd9aceb61d9~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
-
+## 谈谈一致性
 一致性就是数据保持一致，在分布式系统中，可以理解为多个节点中数据的值是一致的。
 
 - **强一致性**：这种一致性级别是最符合用户直觉的，它要求系统写入什么，读出来的也会是什么，用户体验好，但实现起来往往对系统的性能影响大
